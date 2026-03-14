@@ -208,27 +208,35 @@ section:nth-child(even) .project-card { background: var(--bg-elevated); }
 .project-card:hover .tech-stack span { border-color: var(--border-hover); }
 
 /* ========================================
+   Bio / About teaser
+   ======================================== */
+.bio-text {
+  max-width: 620px; line-height: 1.9; font-size: .95rem;
+}
+
+/* ========================================
    Certifications
    ======================================== */
 .certs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1.5rem;
 }
 .cert-item {
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; flex-direction: column; align-items: center;
   background: var(--bg-elevated); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 1rem 1.2rem; transition: border-color .25s;
+  border-radius: var(--radius); padding: 1.2rem 1rem .8rem;
+  transition: all .3s; width: 180px; text-align: center;
 }
-.cert-item:hover { border-color: var(--accent-mid); }
-.cert-icon {
-  width: 40px; height: 40px; border-radius: 8px;
-  background: var(--accent-dim); display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-family: var(--font-mono); font-weight: 700;
-  font-size: .65rem; color: var(--accent);
+.cert-item:hover {
+  border-color: var(--accent-mid); transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
 }
-.cert-name { font-size: .85rem; font-weight: 500; }
-.cert-year { font-family: var(--font-mono); font-size: .7rem; color: var(--text-muted); }
+.cert-info { margin-top: .2rem; }
+.cert-name { font-size: .75rem; font-weight: 500; line-height: 1.4; }
+.cert-year { font-family: var(--font-mono); font-size: .65rem; color: var(--text-muted); margin-top: .2rem; }
+
+/* Certs grid inside about page post-content */
+.certs-grid--about { margin-top: 1.5rem; }
 
 /* ========================================
    Blog list & single

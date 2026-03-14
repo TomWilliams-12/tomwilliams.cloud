@@ -16,6 +16,21 @@
   </div>
 </section>
 
+<!-- About -->
+<section>
+  <div class="container">
+    <div class="section-label">// about</div>
+    <h2 class="section-title">Who I Am</h2>
+    <p class="section-desc bio-text">
+      Senior Cloud Engineer based in the UK with 5+ years of experience building and maintaining AWS infrastructure at scale.
+      Started my career in IT support and systems administration before moving into cloud engineering.
+      I hold five active AWS certifications and enjoy solving complex infrastructure problems with automation and Infrastructure as Code.
+      Currently open to new opportunities.
+    </p>
+    <a href="/about/" class="btn btn-ghost">Read more →</a>
+  </div>
+</section>
+
 <!-- Featured Projects -->
 <section>
   <div class="container">
@@ -48,8 +63,11 @@
     <div class="certs-grid">
       {{ range .Site.Data.certs }}
       <div class="cert-item">
-        <div class="cert-icon">{{ .level }}</div>
-        <div>
+        <div data-iframe-width="150" data-iframe-height="270"
+          data-share-badge-id="{{ .badge_id }}"
+          data-share-badge-host="https://www.credly.com">
+        </div>
+        <div class="cert-info">
           <div class="cert-name">{{ .name }}</div>
           <div class="cert-year">{{ .year }}</div>
         </div>
@@ -57,6 +75,7 @@
       {{ end }}
     </div>
   </div>
+  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 </section>
 
 <!-- Latest Blog Posts -->
