@@ -322,6 +322,19 @@ section:nth-child(even) .blog-card { background: var(--bg-elevated); }
 .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
 .contact-form textarea { resize: vertical; min-height: 120px; }
 .contact-form .btn { align-self: center; margin-top: .5rem; }
+.form-status {
+  max-width: 520px; margin: 1rem auto 0; padding: 1rem 1.4rem;
+  border-radius: var(--radius-sm); font-size: .9rem; text-align: center;
+}
+.form-success {
+  background: var(--accent-dim); color: var(--accent);
+  border: 1px solid var(--accent-mid);
+}
+.form-error {
+  background: rgba(255, 80, 80, 0.1); color: #ff5050;
+  border: 1px solid rgba(255, 80, 80, 0.2);
+}
+
 .terminal-hint {
   font-family: var(--font-mono); font-size: .75rem; color: var(--text-muted);
   margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: .4rem;
