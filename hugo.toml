@@ -7,13 +7,13 @@ theme = ""
 [params]
   description = "Senior Cloud Engineer specialising in AWS, Terraform, and infrastructure automation."
   author = "Tom Williams"
-  github = "https://github.com/YOUR-USERNAME"
-  linkedin = "https://linkedin.com/in/YOUR-PROFILE"
-  email = "your@email.com"
+  github = "https://github.com/TomWilliams-12"
+  linkedin = "https://linkedin.com/in/tom-williams-9aa344106/"
+  email = "williams.t17@gmail.com"
   domain = "tomwilliams.cloud"
 
 [params.contact]
-  formspree = "https://formspree.io/f/YOUR-FORM-ID"
+  formspree = "https://formspree.io/f/mzdjapvw"
 
 [menu]
   [[menu.main]]
