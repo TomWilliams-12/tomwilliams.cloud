@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section style="padding-top: 8rem;">
+  <div class="container">
+    <div class="section-label">// case studies</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-desc">Real-world infrastructure challenges I've solved. Details sanitised for confidentiality.</p>
+    <div class="projects-grid">
+      {{ range .Pages.ByDate.Reverse }}
+      <div class="project-card">
+        {{ with .Params.tag }}<span class="project-tag">{{ . }}</span>{{ end }}
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+        {{ with .Params.tech }}
+        <div class="tech-stack">
+          {{ range . }}<span>{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

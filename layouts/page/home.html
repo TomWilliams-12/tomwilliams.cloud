@@ -1,0 +1,107 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="pre-title">Senior Cloud Engineer</div>
+    <h1>Building <span class="accent">resilient</span> cloud infrastructure</h1>
+    <p class="subtitle">
+      AWS-certified engineer specialising in multi-account organisations,
+      infrastructure automation, and migrating legacy systems to the cloud.
+    </p>
+    <div class="cta-row">
+      <a href="/projects/" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section>
+  <div class="container">
+    <div class="section-label">// case studies</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-desc">Real-world infrastructure challenges I've solved. Details sanitised for confidentiality.</p>
+    <div class="projects-grid">
+      {{ range first 3 (where .Site.RegularPages "Section" "projects") }}
+      <div class="project-card">
+        {{ with .Params.tag }}<span class="project-tag">{{ . }}</span>{{ end }}
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+        {{ with .Params.tech }}
+        <div class="tech-stack">
+          {{ range . }}<span>{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section>
+  <div class="container">
+    <div class="section-label">// credentials</div>
+    <h2 class="section-title">AWS Certifications</h2>
+    <p class="section-desc">Five active AWS certifications across associate, professional, and specialty tracks.</p>
+    <div class="certs-grid">
+      {{ range .Site.Data.certs }}
+      <div class="cert-item">
+        <div class="cert-icon">{{ .level }}</div>
+        <div>
+          <div class="cert-name">{{ .name }}</div>
+          <div class="cert-year">{{ .year }}</div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Latest Blog Posts -->
+<section>
+  <div class="container">
+    <div class="section-label">// writing</div>
+    <h2 class="section-title">Latest Posts</h2>
+    <p class="section-desc">Thoughts on cloud architecture, automation, and lessons from the field.</p>
+    <div class="blog-grid">
+      {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
+      <div class="blog-card">
+        <div class="blog-date">{{ .Date.Format "2 Jan 2006" }}</div>
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+        {{ with .Params.tags }}
+        <div class="blog-tags">
+          {{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-label">// say hello</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-desc" style="margin: 0 auto 2rem;">
+      Open to new opportunities and happy to chat about cloud architecture,
+      infrastructure automation, or anything AWS.
+    </p>
+    <form class="contact-form" action="{{ .Site.Params.contact.formspree }}" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit" class="btn btn-primary">Send Message →</button>
+    </form>
+    <div class="terminal-hint">
+      <span class="prompt">$</span>
+      <span>echo "Let's build something together"</span>
+    </div>
+  </div>
+</section>
+
+{{ end }}

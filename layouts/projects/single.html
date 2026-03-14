@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  <header class="post-header">
+    <div class="container">
+      {{ with .Params.tag }}<span class="post-date">{{ . }}</span>{{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+      {{ with .Params.tech }}
+      <div class="tech-stack" style="justify-content: center; margin-top: 1rem;">
+        {{ range . }}<span>{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

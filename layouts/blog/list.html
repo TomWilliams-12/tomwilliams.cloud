@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section style="padding-top: 8rem;">
+  <div class="container">
+    <div class="section-label">// writing</div>
+    <h2 class="section-title">Blog</h2>
+    <p class="section-desc">Thoughts on cloud architecture, automation, and lessons learned in production.</p>
+    <div class="blog-grid">
+      {{ range .Pages.ByDate.Reverse }}
+      <div class="blog-card">
+        <div class="blog-date">{{ .Date.Format "2 Jan 2006" }}</div>
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary }}</p>
+        {{ with .Params.tags }}
+        <div class="blog-tags">
+          {{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,45 @@
+baseURL = "https://tomwilliams.cloud/"
+languageCode = "en-gb"
+title = "Tom Williams | Senior Cloud Engineer"
+theme = ""
+
+# Use our own layouts (no external theme)
+[params]
+  description = "Senior Cloud Engineer specialising in AWS, Terraform, and infrastructure automation."
+  author = "Tom Williams"
+  github = "https://github.com/YOUR-USERNAME"
+  linkedin = "https://linkedin.com/in/YOUR-PROFILE"
+  email = "your@email.com"
+  domain = "tomwilliams.cloud"
+
+[params.contact]
+  formspree = "https://formspree.io/f/YOUR-FORM-ID"
+
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menu.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 3
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]

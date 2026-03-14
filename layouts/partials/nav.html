@@ -1,0 +1,11 @@
+<nav class="site-nav">
+  <div class="inner">
+    <a href="/" class="logo">tom<span>.cloud</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <ul>
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
