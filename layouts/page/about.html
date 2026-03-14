@@ -1,0 +1,29 @@
+{{ define "main" }}
+<article>
+  <header class="post-header">
+    <div class="container">
+      <h1>{{ .Title }}</h1>
+    </div>
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+
+    <h2>Verified Badges</h2>
+    <div class="certs-grid certs-grid--about">
+      {{ range .Site.Data.certs }}
+      <div class="cert-item">
+        <div data-iframe-width="150" data-iframe-height="270"
+          data-share-badge-id="{{ .badge_id }}"
+          data-share-badge-host="https://www.credly.com">
+        </div>
+        <div class="cert-info">
+          <div class="cert-name">{{ .name }}</div>
+          <div class="cert-year">{{ .year }}</div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</article>
+<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+{{ end }}

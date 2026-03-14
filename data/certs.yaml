@@ -1,19 +1,24 @@
 - name: "Solutions Architect — Professional"
   level: "PRO"
   year: "2025"
+  badge_id: "1912cfbe-dd94-43bb-8834-2237745e36da"
 
 - name: "DevOps Engineer — Professional"
   level: "PRO"
   year: "2025"
+  badge_id: "77233e3f-ed14-4736-afb0-bfe33fd384f8"
 
 - name: "Security — Specialty"
   level: "SPE"
   year: "2025"
+  badge_id: "8f229d2a-8c53-41e8-9a8a-841ab1f78729"
 
 - name: "Solutions Architect — Associate"
   level: "ASC"
   year: "2025"
+  badge_id: "13866ad2-b25f-418d-aaa3-0b0e7066e79d"
 
 - name: "SysOps Administrator — Associate"
   level: "ASC"
   year: "2025"
+  badge_id: "2f52db24-b7ab-4684-a613-6d0a326a9b4f"
