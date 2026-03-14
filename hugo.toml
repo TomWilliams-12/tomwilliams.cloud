@@ -1,8 +1,6 @@
 baseURL = "https://tomwilliams.cloud/"
 languageCode = "en-gb"
 title = "Tom Williams | Senior Cloud Engineer"
-theme = ""
-
 # Use our own layouts (no external theme)
 [params]
   description = "Senior Cloud Engineer specialising in AWS, Terraform, and infrastructure automation."
