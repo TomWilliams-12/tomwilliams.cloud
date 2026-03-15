@@ -15,20 +15,20 @@ title = "Tom Williams | Senior Cloud Engineer"
 
 [menu]
   [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
     name = "Projects"
     url = "/projects/"
-    weight = 1
+    weight = 2
   [[menu.main]]
     name = "Blog"
     url = "/blog/"
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = "Contact"
     url = "/#contact"
-    weight = 3
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
     weight = 4
 
 [taxonomies]
