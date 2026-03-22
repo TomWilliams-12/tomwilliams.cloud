@@ -67,3 +67,35 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify-discord:
+    runs-on: ubuntu-latest
+    needs: deploy
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Notify Discord of new blog posts
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          new_posts=$(git diff --diff-filter=A --name-only HEAD~1 HEAD -- 'content/blog/*.md' | grep -v '_index.md' || true)
+
+          if [ -z "$new_posts" ]; then
+            echo "No new blog posts detected, skipping."
+            exit 0
+          fi
+
+          echo "$new_posts" | while read -r file; do
+            slug=$(basename "$file" .md)
+            url="https://tomwilliams.cloud/blog/${slug}/"
+            message="<@1485224603679985793> cross-post ${url}"
+            echo "Sending Discord notification for: ${url}"
+            curl -s -H "Content-Type: application/json" \
+              -d "{\"content\": \"${message}\"}" \
+              "$DISCORD_WEBHOOK_URL"
+          done
