@@ -43,5 +43,5 @@ title = "Tom Williams | Senior Cloud Engineer"
     lineNos = false
 
 [outputs]
-  home = ["HTML"]
-  section = ["HTML"]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
