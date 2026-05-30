@@ -2,56 +2,77 @@
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-content">
-    {{ with .Site.Params.availability }}<div class="availability"><span class="status-dot"></span>{{ . }}</div>{{ end }}
-    <div class="pre-title">Senior Cloud Engineer</div>
-    <h1>Building <span class="accent">resilient</span> cloud infrastructure</h1>
-    <p class="subtitle">
-      AWS-certified engineer specialising in multi-account organisations,
-      infrastructure automation, and migrating legacy systems to the cloud.
-    </p>
-    <div class="cta-row">
-      {{ if .Site.Params.resumeReady }}<a href="{{ .Site.Params.resume }}" class="btn btn-primary" download>Download CV ↓</a>{{ end }}
-      <a href="/projects/" class="btn {{ if .Site.Params.resumeReady }}btn-ghost{{ else }}btn-primary{{ end }}">View Projects</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  <div class="inner">
+    <div class="hero-main">
+      <div class="meta-line">Senior Cloud Engineer · AWS 5×</div>
+      <h1>Infrastructure that <span class="u"><b>holds up</b></span> under load.</h1>
+      <p class="lede">
+        Multi-account AWS, infrastructure-as-code, and legacy migrations —
+        engineered so the graphs stay flat and no one gets paged at 3am.
+      </p>
+      <div class="cta-row">
+        {{ if .Site.Params.resumeReady }}<a href="{{ .Site.Params.resume }}" class="btn btn-1" download>Download CV ↓</a>{{ end }}
+        <a href="/projects/" class="btn {{ if .Site.Params.resumeReady }}btn-2{{ else }}btn-1{{ end }}">View Projects →</a>
+        <a href="#contact" class="btn btn-2">Get in touch</a>
+      </div>
     </div>
-    {{ with .Site.Params.location }}<div class="hero-meta">📍 {{ . }}</div>{{ end }}
+    <div class="spec">
+      <div class="spec-head">
+        <span>// profile</span>
+        {{ with .Site.Params.availability }}<span class="live"><i></i>{{ . }}</span>{{ end }}
+      </div>
+      <div class="row"><div class="k">Role</div><div class="v">Senior Cloud Engineer</div></div>
+      <div class="row"><div class="k">Stack</div><div class="v"><span class="mono">AWS · Terraform · Lambda</span></div></div>
+      <div class="row"><div class="k">Scale</div><div class="v">Multi-account · Landing Zone</div></div>
+      <div class="row"><div class="k">Certs</div><div class="v"><span class="pill">PRO×2</span><span class="pill">SPEC</span><span class="pill">ASSOC×2</span></div></div>
+      {{ with .Site.Params.location }}<div class="row"><div class="k">Based</div><div class="v">{{ . }}</div></div>{{ end }}
+    </div>
   </div>
 </section>
 
 <!-- About -->
 <section>
   <div class="container">
-    <div class="section-label">// about</div>
-    <h2 class="section-title">Who I Am</h2>
-    <p class="section-desc bio-text">
-      Senior Cloud Engineer based in the UK with 5+ years of experience building and maintaining AWS infrastructure at scale.
-      Started my career in IT support and systems administration before moving into cloud engineering.
-      I hold five active AWS certifications and enjoy solving complex infrastructure problems with automation and Infrastructure as Code.
-      Currently open to new opportunities.
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">about</div>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <a href="/about/" class="section-link">full bio →</a>
+    </div>
+    <p class="lede" style="max-width:760px;">
+      Senior Cloud Engineer based in the UK with 5+ years building and running AWS infrastructure at scale.
+      I came up through IT support and sysadmin work before going all-in on cloud — and I hold five active
+      AWS certifications across the associate, professional, and specialty tracks. I like turning brittle,
+      manual infrastructure into automated systems teams can trust.
     </p>
-    <a href="/about/" class="btn btn-ghost">Read more →</a>
   </div>
 </section>
 
 <!-- Featured Projects -->
 <section>
   <div class="container">
-    <div class="section-label">// case studies</div>
-    <h2 class="section-title">Featured Projects</h2>
-    <p class="section-desc">Real-world infrastructure challenges I've solved. Details sanitised for confidentiality.</p>
-    <div class="projects-grid">
-      {{ range first 3 (where .Site.RegularPages "Section" "projects") }}
-      <div class="project-card">
-        {{ with .Params.tag }}<span class="project-tag">{{ . }}</span>{{ end }}
-        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Summary }}</p>
-        {{ with .Params.tech }}
-        <div class="tech-stack">
-          {{ range . }}<span>{{ . }}</span>{{ end }}
-        </div>
-        {{ end }}
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">case studies</div>
+        <h2 class="section-title">Featured Projects</h2>
       </div>
+      <a href="/projects/" class="section-link">all projects →</a>
+    </div>
+    <div class="proj-grid">
+      {{ range $i, $p := first 3 (where .Site.RegularPages "Section" "projects") }}
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-idx">{{ printf "%02d" (add $i 1) }}</span>
+          {{ with $p.Params.tag }}<span class="proj-tag">{{ . }}</span>{{ end }}
+        </div>
+        <h3><a href="{{ $p.Permalink }}">{{ $p.Title }}</a></h3>
+        <p>{{ $p.Summary }}</p>
+        <div class="proj-foot">
+          <div class="stack-row">{{ range first 3 $p.Params.tech }}<span>{{ . }}</span>{{ end }}</div>
+          <a class="proj-arrow" href="{{ $p.Permalink }}" aria-label="Read {{ $p.Title }}">→</a>
+        </div>
+      </article>
       {{ end }}
     </div>
   </div>
@@ -60,44 +81,50 @@
 <!-- Certifications -->
 <section>
   <div class="container">
-    <div class="section-label">// credentials</div>
-    <h2 class="section-title">AWS Certifications</h2>
-    <p class="section-desc">Five active AWS certifications across associate, professional, and specialty tracks.</p>
-    <div class="certs-grid">
-      {{ range .Site.Data.certs }}
-      <div class="cert-item">
-        <div data-iframe-width="150" data-iframe-height="270"
-          data-share-badge-id="{{ .badge_id }}"
-          data-share-badge-host="https://www.credly.com">
-        </div>
-        <div class="cert-info">
-          <div class="cert-name">{{ .name }}</div>
-          <div class="cert-year">{{ .year }}</div>
-        </div>
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">credentials</div>
+        <h2 class="section-title">AWS Certifications</h2>
       </div>
+      <span class="section-link">5 / 5 active ✓</span>
+    </div>
+    <div class="cert-grid">
+      {{ $levels := dict "PRO" "Professional" "SPE" "Specialty" "ASC" "Associate" }}
+      {{ range .Site.Data.certs }}
+      <a class="cert-card" href="{{ .verify_url | default (printf "https://www.credly.com/badges/%s/public_url" .badge_id) }}" target="_blank" rel="noopener">
+        {{ if .image }}
+        <img class="cert-badge" src="{{ .image }}" alt="{{ .name }} — AWS certification badge" loading="lazy" width="92" height="92">
+        {{ else }}
+        <div data-iframe-width="100" data-iframe-height="100" data-share-badge-id="{{ .badge_id }}" data-share-badge-host="https://www.credly.com"></div>
+        {{ end }}
+        <div class="cert-name">{{ .name }}</div>
+        <div class="cert-level">{{ index $levels .level | default .level }}</div>
+      </a>
       {{ end }}
     </div>
   </div>
-  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+  {{ if not (where .Site.Data.certs "image" "!=" nil) }}<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>{{ end }}
 </section>
 
-<!-- Latest Blog Posts -->
+<!-- Latest Posts -->
 <section>
   <div class="container">
-    <div class="section-label">// writing</div>
-    <h2 class="section-title">Latest Posts</h2>
-    <p class="section-desc">Thoughts on cloud architecture, automation, and lessons from the field.</p>
-    <div class="blog-grid">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">writing</div>
+        <h2 class="section-title">Latest Posts</h2>
+      </div>
+      <a href="/blog/" class="section-link">all posts →</a>
+    </div>
+    <div class="blog-list">
       {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
-      <div class="blog-card">
-        <div class="blog-date">{{ .Date.Format "2 Jan 2006" }}</div>
-        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Summary }}</p>
-        {{ with .Params.tags }}
-        <div class="blog-tags">
-          {{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+      <div class="blog-row">
+        <span class="blog-date">{{ .Date.Format "2 Jan 2006" }}</span>
+        <div class="blog-main">
+          <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Summary }}</p>
+          {{ with .Params.tags }}<div>{{ range . }}<a class="blog-tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}</div>{{ end }}
         </div>
-        {{ end }}
       </div>
       {{ end }}
     </div>
@@ -107,31 +134,27 @@
 <!-- Contact -->
 <section id="contact" class="contact-section">
   <div class="container">
-    <div class="section-label">// say hello</div>
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-desc" style="margin: 0 auto 2rem;">
+    <div class="section-kicker" style="justify-content:center;">say hello</div>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-desc" style="margin:.6rem auto 0;">
       Open to new opportunities and happy to chat about cloud architecture,
       infrastructure automation, or anything AWS.
     </p>
     <form class="contact-form" id="contact-form" action="{{ .Site.Params.contact.formspree }}" method="POST">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" placeholder="Your message" required></textarea>
-      <!-- Honeypot: bots fill this, humans never see it -->
+      <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+      <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+      <textarea name="message" placeholder="Your message" aria-label="Your message" required></textarea>
       <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="btn btn-primary">Send Message →</button>
+      <button type="submit" class="btn btn-1">Send message →</button>
     </form>
     <div id="form-status" class="form-status" style="display:none;"></div>
     <p class="contact-or">or reach me directly</p>
     <div class="contact-direct">
-      {{ with .Site.Params.email }}<a href="mailto:{{ . }}" class="btn btn-ghost">✉ {{ . }}</a>{{ end }}
-      {{ with .Site.Params.linkedin }}<a href="{{ . }}" class="btn btn-ghost" target="_blank" rel="noopener">in LinkedIn</a>{{ end }}
-    </div>
-    <div class="terminal-hint">
-      <span class="prompt">$</span>
-      <span>echo "Let's build something together"</span>
+      {{ with .Site.Params.email }}<a href="mailto:{{ . }}" class="btn btn-2">✉ {{ . }}</a>{{ end }}
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" class="btn btn-2" target="_blank" rel="noopener">in LinkedIn</a>{{ end }}
     </div>
   </div>
 </section>
+<div class="page-index">01 — HOME</div>
 
 {{ end }}

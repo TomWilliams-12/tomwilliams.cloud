@@ -1,14 +1,20 @@
 <nav class="site-nav">
   <div class="inner">
-    <a href="/" class="logo">tom<span>.cloud</span></a>
+    <a href="/" class="brand"><span class="mono">TW</span>tomwilliams<span class="dim">.cloud</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <ul>
+    <ul class="nav-links">
       {{ range .Site.Menus.main }}
       <li><a href="{{ .URL }}">{{ .Name }}</a></li>
       {{ end }}
       {{ if .Site.Params.resumeReady }}
-      <li class="nav-cta-item"><a href="{{ .Site.Params.resume }}" class="nav-cta" download>Download CV ↓</a></li>
+      <li><a href="{{ .Site.Params.resume }}" class="nav-cta" download>Download CV ↓</a></li>
       {{ end }}
+      <li>
+        <div class="theme-toggle" role="group" aria-label="Colour theme">
+          <button type="button" data-theme-set="light" aria-pressed="false">☀ Light</button>
+          <button type="button" data-theme-set="dark" aria-pressed="true">☾ Dark</button>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
