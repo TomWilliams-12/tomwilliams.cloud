@@ -81,25 +81,29 @@
 <!-- Certifications -->
 <section>
   <div class="container">
-    <div class="section-label">// credentials</div>
-    <h2 class="section-title">AWS Certifications</h2>
-    <p class="section-desc">Five active AWS certifications across associate, professional, and specialty tracks.</p>
-    <div class="certs-grid">
-      {{ range .Site.Data.certs }}
-      <div class="cert-item">
-        <div data-iframe-width="150" data-iframe-height="270"
-          data-share-badge-id="{{ .badge_id }}"
-          data-share-badge-host="https://www.credly.com">
-        </div>
-        <div class="cert-info">
-          <div class="cert-name">{{ .name }}</div>
-          <div class="cert-year">{{ .year }}</div>
-        </div>
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">credentials</div>
+        <h2 class="section-title">AWS Certifications</h2>
       </div>
+      <span class="section-link">5 / 5 active ✓</span>
+    </div>
+    <div class="cert-grid">
+      {{ $levels := dict "PRO" "Professional" "SPE" "Specialty" "ASC" "Associate" }}
+      {{ range .Site.Data.certs }}
+      <a class="cert-card" href="{{ .verify_url | default (printf "https://www.credly.com/badges/%s/public_url" .badge_id) }}" target="_blank" rel="noopener">
+        {{ if .image }}
+        <img class="cert-badge" src="{{ .image }}" alt="{{ .name }} — AWS certification badge" loading="lazy" width="92" height="92">
+        {{ else }}
+        <div data-iframe-width="100" data-iframe-height="100" data-share-badge-id="{{ .badge_id }}" data-share-badge-host="https://www.credly.com"></div>
+        {{ end }}
+        <div class="cert-name">{{ .name }}</div>
+        <div class="cert-level">{{ index $levels .level | default .level }}</div>
+      </a>
       {{ end }}
     </div>
   </div>
-  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+  {{ if not (where .Site.Data.certs "image" "!=" nil) }}<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>{{ end }}
 </section>
 
 <!-- Latest Blog Posts -->
