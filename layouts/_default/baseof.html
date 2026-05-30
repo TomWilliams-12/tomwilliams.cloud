@@ -1,6 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
@@ -73,6 +86,23 @@
           });
         });
       }
+
+      // Theme toggle
+      const root = document.documentElement;
+      const setTheme = (t) => {
+        root.setAttribute('data-theme', t);
+        try { localStorage.setItem('theme', t); } catch (e) {}
+        document.querySelectorAll('.theme-toggle button').forEach((b) => {
+          const on = b.dataset.themeSet === t;
+          b.classList.toggle('on', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      };
+      document.querySelectorAll('.theme-toggle button').forEach((b) => {
+        b.addEventListener('click', () => setTheme(b.dataset.themeSet));
+      });
+      // sync initial button state with the theme set by the head bootstrap
+      setTheme(root.getAttribute('data-theme') || 'dark');
     });
   </script>
 </body>
