@@ -33,36 +33,46 @@
 <!-- About -->
 <section>
   <div class="container">
-    <div class="section-label">// about</div>
-    <h2 class="section-title">Who I Am</h2>
-    <p class="section-desc bio-text">
-      Senior Cloud Engineer based in the UK with 5+ years of experience building and maintaining AWS infrastructure at scale.
-      Started my career in IT support and systems administration before moving into cloud engineering.
-      I hold five active AWS certifications and enjoy solving complex infrastructure problems with automation and Infrastructure as Code.
-      Currently open to new opportunities.
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">about</div>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <a href="/about/" class="section-link">full bio →</a>
+    </div>
+    <p class="lede" style="max-width:760px;">
+      Senior Cloud Engineer based in the UK with 5+ years building and running AWS infrastructure at scale.
+      I came up through IT support and sysadmin work before going all-in on cloud — and I hold five active
+      AWS certifications across the associate, professional, and specialty tracks. I like turning brittle,
+      manual infrastructure into automated systems teams can trust.
     </p>
-    <a href="/about/" class="btn btn-ghost">Read more →</a>
   </div>
 </section>
 
 <!-- Featured Projects -->
 <section>
   <div class="container">
-    <div class="section-label">// case studies</div>
-    <h2 class="section-title">Featured Projects</h2>
-    <p class="section-desc">Real-world infrastructure challenges I've solved. Details sanitised for confidentiality.</p>
-    <div class="projects-grid">
-      {{ range first 3 (where .Site.RegularPages "Section" "projects") }}
-      <div class="project-card">
-        {{ with .Params.tag }}<span class="project-tag">{{ . }}</span>{{ end }}
-        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Summary }}</p>
-        {{ with .Params.tech }}
-        <div class="tech-stack">
-          {{ range . }}<span>{{ . }}</span>{{ end }}
-        </div>
-        {{ end }}
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">case studies</div>
+        <h2 class="section-title">Featured Projects</h2>
       </div>
+      <a href="/projects/" class="section-link">all projects →</a>
+    </div>
+    <div class="proj-grid">
+      {{ range $i, $p := first 3 (where .Site.RegularPages "Section" "projects") }}
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-idx">{{ printf "%02d" (add $i 1) }}</span>
+          {{ with $p.Params.tag }}<span class="proj-tag">{{ . }}</span>{{ end }}
+        </div>
+        <h3><a href="{{ $p.Permalink }}">{{ $p.Title }}</a></h3>
+        <p>{{ $p.Summary }}</p>
+        <div class="proj-foot">
+          <div class="stack-row">{{ range first 3 $p.Params.tech }}<span>{{ . }}</span>{{ end }}</div>
+          <a class="proj-arrow" href="{{ $p.Permalink }}" aria-label="Read {{ $p.Title }}">→</a>
+        </div>
+      </article>
       {{ end }}
     </div>
   </div>
