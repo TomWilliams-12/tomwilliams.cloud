@@ -100,7 +100,9 @@ Scale (the larger scale validated in the mockups):
 
 ### 4.5 Certifications — home section + `layouts/page/about.html`
 - Credential **rack**: panel cards framing the **real Credly badge image**, with name + level pill caption, hover lift.
-- **Decision (needs confirm):** move from Credly's `<iframe>` embed to rendering the **badge image directly**, linking out to the Credly verification page. Faster, themeable, sits cleanly in the card. Requires per-cert `image` + `verify_url` (or `badge_url`) added to `data/certs.yaml` (and the badge PNGs in `static/images/certs/` if we self-host the images). **Fallback:** if asset wrangling isn't wanted now, keep the existing iframe embed inside the restyled card. *(See Open Questions.)*
+- **Decision (confirmed):** move from Credly's `<iframe>` embed to rendering the **badge image directly**, linking out to the Credly verification page. Faster, themeable, sits cleanly in the card.
+  - The image URL + verification link are resolved **automatically from each existing `badge_id`** (fetch the public Credly badge page, read its `og:image` and canonical URL) and written into `data/certs.yaml` as `image` + `verify_url`. Optionally the resolved PNGs are saved to `static/images/certs/` and referenced locally (avoids hotlinking / runtime dependency on Credly).
+  - **Fallback:** if a badge image cannot be resolved, keep the existing Credly iframe embed inside the restyled card for that cert.
 
 ### 4.6 Blog — `layouts/blog/list.html`, `single.html`, home latest block
 - **List:** editorial rows (mono date column + title + 1–2 line summary + tag pill), hairline dividers, hover background + title→teal. Replaces the card grid.
@@ -111,7 +113,7 @@ Scale (the larger scale validated in the mockups):
 
 ### 4.8 `static/css/style.css`
 - Rewrite `:root`/theme tokens, base, nav, hero, spec card, sections, project cards, certs rack, blog list, post typography, contact, footer, animations, responsive — all on the new system.
-- Keep: smooth scroll, custom scrollbar (recoloured), reduced-motion handling. **Drop** the heavy noise overlay (replace with subtle/no texture; the structure now carries the look).
+- Keep: smooth scroll, custom scrollbar (recoloured), reduced-motion handling. **Drop** the heavy noise overlay; replace with a **whisper-subtle paper grain on the light theme only** (dark theme stays clean — structure carries the look there).
 
 ---
 
@@ -143,8 +145,8 @@ Scale (the larger scale validated in the mockups):
 
 ---
 
-## 8. Open questions for review
+## 8. Decisions (resolved in review)
 
-1. **Certs rendering** — switch to direct badge images + verification links (preferred; needs `image`/`verify_url` in `data/certs.yaml` and/or PNGs in `static/`), or keep the existing Credly iframe inside the restyled card for now?
-2. **Light-theme texture** — fully flat, or a *very* subtle paper grain on the light theme only? (Default plan: flat/minimal.)
-3. Anything in the validated mockups you want tuned before the implementation plan (spacing, the "holds up under load" headline copy, etc.)?
+1. **Certs rendering** — ✅ Switch to direct badge images + verification links, resolved automatically from each `badge_id`; iframe kept only as a per-cert fallback. (§4.5)
+2. **Light-theme texture** — ✅ Whisper-subtle paper grain on the light theme only; dark stays flat. (§4.8)
+3. **Headline copy** — "Infrastructure that *holds up* under load" stands for now; trivially editable later in `home.html`.
