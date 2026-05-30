@@ -2,6 +2,7 @@
   <div class="social-links">
     {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
     {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+    {{ with .Site.Params.email }}<a href="mailto:{{ . }}">Email</a>{{ end }}
   </div>
   <p>&copy; {{ now.Year }} Tom Williams. Built with Hugo.</p>
 </footer>

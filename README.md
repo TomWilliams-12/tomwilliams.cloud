@@ -82,9 +82,41 @@ Edit `hugo.toml` to update:
   linkedin = "https://linkedin.com/in/YOUR-PROFILE"
   email = "your@email.com"
 
+  # Recruiter-facing signals (shown in the hero + meta tags)
+  location = "United Kingdom · Remote / Hybrid"
+  availability = "Open to new opportunities"
+
+  # CV download: drop your PDF at static/cv.pdf, then flip this to true to
+  # reveal the "Download CV" buttons in the nav + hero. Left false so the
+  # live site never links to a missing file.
+  resume = "/cv.pdf"
+  resumeReady = false
+
+  # Social share image used for Open Graph / Twitter link previews
+  ogImage = "images/og-image.png"
+
 [params.contact]
   formspree = "https://formspree.io/f/YOUR-FORM-ID"
 ```
+
+### CV / résumé
+
+1. Export your CV as `cv.pdf`
+2. Drop it in `static/` (so it serves from `https://tomwilliams.cloud/cv.pdf`)
+3. Set `resumeReady = true` in `hugo.toml` and push
+
+### Social share image (Open Graph)
+
+`static/images/og-image.png` (1200×630) is the preview shown when the site is
+shared on LinkedIn, Slack, X, etc. Replace it with your own 1200×630 PNG to
+update the preview. After changing it, validate with
+[LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) — LinkedIn
+caches aggressively, so re-scrape there to bust the cache.
+
+> **Tip:** test the contact form end-to-end after any change — submit a real
+> message and confirm it arrives (check spam). Formspree's free tier silently
+> caps at 50 submissions/month, so the `mailto:` + LinkedIn fallbacks on the
+> contact section are there to catch anything the form misses.
 
 ### Contact form
 

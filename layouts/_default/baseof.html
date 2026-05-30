@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  {{- partial "seo.html" . -}}
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="canonical" href="{{ .Permalink }}">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4N93L1L704"></script>
   <script>
@@ -32,7 +31,10 @@
       const toggle = document.querySelector('.nav-toggle');
       const menu = document.querySelector('.site-nav ul');
       if (toggle && menu) {
-        toggle.addEventListener('click', () => menu.classList.toggle('open'));
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
       }
 
       // Contact form AJAX submission

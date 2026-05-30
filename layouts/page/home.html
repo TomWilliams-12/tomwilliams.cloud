@@ -3,6 +3,7 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
+    {{ with .Site.Params.availability }}<div class="availability"><span class="status-dot"></span>{{ . }}</div>{{ end }}
     <div class="pre-title">Senior Cloud Engineer</div>
     <h1>Building <span class="accent">resilient</span> cloud infrastructure</h1>
     <p class="subtitle">
@@ -10,9 +11,11 @@
       infrastructure automation, and migrating legacy systems to the cloud.
     </p>
     <div class="cta-row">
-      <a href="/projects/" class="btn btn-primary">View Projects</a>
+      {{ if .Site.Params.resumeReady }}<a href="{{ .Site.Params.resume }}" class="btn btn-primary" download>Download CV ↓</a>{{ end }}
+      <a href="/projects/" class="btn {{ if .Site.Params.resumeReady }}btn-ghost{{ else }}btn-primary{{ end }}">View Projects</a>
       <a href="#contact" class="btn btn-ghost">Get in Touch</a>
     </div>
+    {{ with .Site.Params.location }}<div class="hero-meta">📍 {{ . }}</div>{{ end }}
   </div>
 </section>
 
@@ -114,9 +117,16 @@
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="Your email" required>
       <textarea name="message" placeholder="Your message" required></textarea>
+      <!-- Honeypot: bots fill this, humans never see it -->
+      <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit" class="btn btn-primary">Send Message →</button>
     </form>
     <div id="form-status" class="form-status" style="display:none;"></div>
+    <p class="contact-or">or reach me directly</p>
+    <div class="contact-direct">
+      {{ with .Site.Params.email }}<a href="mailto:{{ . }}" class="btn btn-ghost">✉ {{ . }}</a>{{ end }}
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" class="btn btn-ghost" target="_blank" rel="noopener">in LinkedIn</a>{{ end }}
+    </div>
     <div class="terminal-hint">
       <span class="prompt">$</span>
       <span>echo "Let's build something together"</span>

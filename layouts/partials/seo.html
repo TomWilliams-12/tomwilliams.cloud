@@ -1,0 +1,63 @@
+{{/* ---- Resolve title + description per page ---- */}}
+{{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+{{- $desc := "" -}}
+{{- with .Description }}{{ $desc = . }}{{ end -}}
+{{- if not $desc }}{{ with .Summary }}{{ $desc = . }}{{ end }}{{ end -}}
+{{- if not $desc }}{{ $desc = .Site.Params.description }}{{ end -}}
+{{- $desc = $desc | plainify | chomp | truncate 200 -}}
+{{- $ogImage := (.Site.Params.ogImage | default "images/og-image.png") | absURL -}}
+{{- $ogType := cond .IsPage "article" "website" -}}
+
+<meta name="description" content="{{ $desc }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* ---- Favicons ---- */}}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+{{/* ---- Open Graph ---- */}}
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ $ogType }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ .Site.Params.author }} — Senior Cloud Engineer">
+<meta property="og:locale" content="en_GB">
+
+{{/* ---- Twitter ---- */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
+
+{{/* ---- Structured data (homepage only) ---- */}}
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Params.author }}",
+  "url": "{{ .Site.BaseURL }}",
+  "image": "{{ $ogImage }}",
+  "jobTitle": "Senior Cloud Engineer",
+  "email": "mailto:{{ .Site.Params.email }}",
+  "description": {{ .Site.Params.description | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GB"
+  },
+  "knowsAbout": ["Amazon Web Services", "Terraform", "Infrastructure as Code", "Cloud Architecture", "DevOps", "CI/CD", "AWS Organizations", "Lambda"],
+  "sameAs": [
+    "{{ .Site.Params.github }}",
+    "{{ .Site.Params.linkedin }}"
+  ]
+}
+</script>
+{{- end }}
