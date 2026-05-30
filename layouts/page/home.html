@@ -2,20 +2,31 @@
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-content">
-    {{ with .Site.Params.availability }}<div class="availability"><span class="status-dot"></span>{{ . }}</div>{{ end }}
-    <div class="pre-title">Senior Cloud Engineer</div>
-    <h1>Building <span class="accent">resilient</span> cloud infrastructure</h1>
-    <p class="subtitle">
-      AWS-certified engineer specialising in multi-account organisations,
-      infrastructure automation, and migrating legacy systems to the cloud.
-    </p>
-    <div class="cta-row">
-      {{ if .Site.Params.resumeReady }}<a href="{{ .Site.Params.resume }}" class="btn btn-primary" download>Download CV ↓</a>{{ end }}
-      <a href="/projects/" class="btn {{ if .Site.Params.resumeReady }}btn-ghost{{ else }}btn-primary{{ end }}">View Projects</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  <div class="inner">
+    <div class="hero-main">
+      <div class="meta-line">Senior Cloud Engineer · AWS 5×</div>
+      <h1>Infrastructure that <span class="u"><b>holds up</b></span> under load.</h1>
+      <p class="lede">
+        Multi-account AWS, infrastructure-as-code, and legacy migrations —
+        engineered so the graphs stay flat and no one gets paged at 3am.
+      </p>
+      <div class="cta-row">
+        {{ if .Site.Params.resumeReady }}<a href="{{ .Site.Params.resume }}" class="btn btn-1" download>Download CV ↓</a>{{ end }}
+        <a href="/projects/" class="btn {{ if .Site.Params.resumeReady }}btn-2{{ else }}btn-1{{ end }}">View Projects →</a>
+        <a href="#contact" class="btn btn-2">Get in touch</a>
+      </div>
     </div>
-    {{ with .Site.Params.location }}<div class="hero-meta">📍 {{ . }}</div>{{ end }}
+    <div class="spec">
+      <div class="spec-head">
+        <span>// profile</span>
+        {{ with .Site.Params.availability }}<span class="live"><i></i>{{ . }}</span>{{ end }}
+      </div>
+      <div class="row"><div class="k">Role</div><div class="v">Senior Cloud Engineer</div></div>
+      <div class="row"><div class="k">Stack</div><div class="v"><span class="mono">AWS · Terraform · Lambda</span></div></div>
+      <div class="row"><div class="k">Scale</div><div class="v">Multi-account · Landing Zone</div></div>
+      <div class="row"><div class="k">Certs</div><div class="v"><span class="pill">PRO×2</span><span class="pill">SPEC</span><span class="pill">ASSOC×2</span></div></div>
+      {{ with .Site.Params.location }}<div class="row"><div class="k">Based</div><div class="v">{{ . }}</div></div>{{ end }}
+    </div>
   </div>
 </section>
 
