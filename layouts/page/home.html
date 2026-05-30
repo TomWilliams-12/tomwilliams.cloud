@@ -134,9 +134,9 @@
 <!-- Contact -->
 <section id="contact" class="contact-section">
   <div class="container">
-    <div class="section-label">// say hello</div>
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-desc" style="margin: 0 auto 2rem;">
+    <div class="section-kicker" style="justify-content:center;">say hello</div>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-desc" style="margin:.6rem auto 0;">
       Open to new opportunities and happy to chat about cloud architecture,
       infrastructure automation, or anything AWS.
     </p>
@@ -144,21 +144,17 @@
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="Your email" required>
       <textarea name="message" placeholder="Your message" required></textarea>
-      <!-- Honeypot: bots fill this, humans never see it -->
       <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="btn btn-primary">Send Message →</button>
+      <button type="submit" class="btn btn-1">Send message →</button>
     </form>
     <div id="form-status" class="form-status" style="display:none;"></div>
     <p class="contact-or">or reach me directly</p>
     <div class="contact-direct">
-      {{ with .Site.Params.email }}<a href="mailto:{{ . }}" class="btn btn-ghost">✉ {{ . }}</a>{{ end }}
-      {{ with .Site.Params.linkedin }}<a href="{{ . }}" class="btn btn-ghost" target="_blank" rel="noopener">in LinkedIn</a>{{ end }}
-    </div>
-    <div class="terminal-hint">
-      <span class="prompt">$</span>
-      <span>echo "Let's build something together"</span>
+      {{ with .Site.Params.email }}<a href="mailto:{{ . }}" class="btn btn-2">✉ {{ . }}</a>{{ end }}
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" class="btn btn-2" target="_blank" rel="noopener">in LinkedIn</a>{{ end }}
     </div>
   </div>
 </section>
+<div class="page-index">01 — HOME</div>
 
 {{ end }}
