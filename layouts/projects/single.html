@@ -6,7 +6,7 @@
       <h1>{{ .Title }}</h1>
       {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
       {{ with .Params.tech }}
-      <div class="tech-stack" style="justify-content: center; margin-top: 1rem;">
+      <div class="stack-row" style="margin-top:1.4rem;">
         {{ range . }}<span>{{ . }}</span>{{ end }}
       </div>
       {{ end }}

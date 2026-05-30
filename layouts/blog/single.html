@@ -5,6 +5,9 @@
       <span class="post-date">{{ .Date.Format "2 January 2006" }}</span>
       <h1>{{ .Title }}</h1>
       {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+      <div style="margin-top:1.2rem;">{{ range . }}<a class="blog-tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}</div>
+      {{ end }}
     </div>
   </header>
   <div class="post-content">
