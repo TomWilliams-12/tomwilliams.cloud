@@ -106,23 +106,25 @@
   {{ if not (where .Site.Data.certs "image" "!=" nil) }}<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>{{ end }}
 </section>
 
-<!-- Latest Blog Posts -->
+<!-- Latest Posts -->
 <section>
   <div class="container">
-    <div class="section-label">// writing</div>
-    <h2 class="section-title">Latest Posts</h2>
-    <p class="section-desc">Thoughts on cloud architecture, automation, and lessons from the field.</p>
-    <div class="blog-grid">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">writing</div>
+        <h2 class="section-title">Latest Posts</h2>
+      </div>
+      <a href="/blog/" class="section-link">all posts →</a>
+    </div>
+    <div class="blog-list">
       {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
-      <div class="blog-card">
-        <div class="blog-date">{{ .Date.Format "2 Jan 2006" }}</div>
-        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Summary }}</p>
-        {{ with .Params.tags }}
-        <div class="blog-tags">
-          {{ range . }}<a href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}
+      <div class="blog-row">
+        <span class="blog-date">{{ .Date.Format "2 Jan 2006" }}</span>
+        <div class="blog-main">
+          <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Summary }}</p>
+          {{ with .Params.tags }}<div>{{ range . }}<a class="blog-tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>{{ end }}</div>{{ end }}
         </div>
-        {{ end }}
       </div>
       {{ end }}
     </div>
